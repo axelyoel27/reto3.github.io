@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al GUSTO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #D62C3F;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+
+        p {
+            margin-top: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            font-size: 1rem;
+            width: 60%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        .catalogo-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .producto {
+            background-color: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 250px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .producto img {
+            width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .producto h3 {
+            color: #D62C3F;
+            margin: 15px 0;
+        }
+
+        .producto p {
+            padding: 0 10px;
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+            .catalogo-container {
+                justify-content: center;
+            }
+
+            .producto {
+                width: 220px;
+
+            header {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .producto {
+                width: 100%;
+            }
+
+            .catalogo-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <h1>NUESTRA CARTA</h1>
+        <p>¡Disfruta de lo mejor de la gastronomía del Perú!</p>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar plato..." onkeyup="searchPlato()">
+    </div>
+
+    <main>
+
+        <section>
+            <h2>Bienvenidos</h2>
+            <p>En esta web, encontrarás una selección de los platos más representativos de la gastronomía peruana, reconocida mundialmente por su diversidad de sabores y sus ingredientes únicos. ¡Disfruta de la mejor comida del Perú!</p>
+        </section>
+        <section>
+            <h2>Catalogo de Platos Peruanos</h2>
+            <div class="catalogo-container" id="catalogo">
+                <div class="producto" data-name="ceviche">
+                    <img src="img/ceviche.jpg" alt="Ceviche">
+                    <h3>Ceviche</h3>
+                    <p>Plato hecho con pescado fresco marinado en jugo de limón y aderezado con ají, cebolla y cilantro.</p>
+                    <p class="precio">S/ 15.00</p>
+                </div>
+                <div class="producto" data-name="lomo saltado">
+                    <img src="img/lomo saltado.jpeg" alt="Lomo Saltado">
+                    <h3>Lomo Saltado</h3>
+                    <p>Plato hecho con Carne de res saltada con cebolla, tomate, papas fritas y arroz.</p>
+                    <p class="precio">S/ 35.00</p>
+                </div>
+                <div class="producto" data-name="aji de gallina">
+                    <img src="img/aji de gallina.jpeg" alt="Aji de Gallina">
+                    <h3>Aji de Gallina</h3>
+                    <p>Plato hecho con pollo desmenuzado en una salsa cremosa a base de ají amarillo, nueces y queso, acompañado con arroz blanco.</p>
+                    <p class=".precio">S/ 30.00</p>
+                </div>
+                <div class="producto" data-name="causa rellena">
+                    <img src="img/causa rellena+.jpg" alt="Causa Rellena">
+                    <h3>Causa Rellena</h3>
+                    <p>Plato frío a base de puré de papa amarilla, relleno con atún, pollo o mariscos, y decorado con aguacate y huevo.</p>
+                    <p class="precio">S/ 20.00</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p> 2024 Platos del Perú | Todos los derechos reservados</p>
+        <p>Contacto: algusto@gmail.com</p>
+    </footer>
+
+    <script>
+
+        function searchPlato() {
+            // Obtener el valor de búsqueda
+            var input = document.getElementById('searchInput');
+            var filter = input.value.toLowerCase();
+            var catalogo = document.getElementById('catalogo');
+            var productos = catalogo.getElementsByClassName('producto');
+
+
+            for (var i = 0; i < productos.length; i++) {
+                var producto = productos[i];
+                var name = producto.getAttribute('data-name').toLowerCase();
+                if (name.indexOf(filter) > -1) {
+                    producto.style.display = "";
+                } else {
+                    producto.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
+
